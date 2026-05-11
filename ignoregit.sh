@@ -6,6 +6,21 @@
 # Description: A simple utility for placing a template .gitignore file into the current working directory.
 #
 
+template_dir=~/templates
+template_file=$template_dir/gitignore-template
+
+if [ ! -d $template_dir ]; then
+	echo "Error: no template directory exists at $template_dir!"
+	echo "Creating directory at $template_dir ..."
+	mkdir $template_dir
+	echo "Creating template file..."
+	echo "" >> $template_file
+elif [ ! -f $template_file ]; then
+	echo "Error: no template file exists inside $template_dir!"
+	echo "Creating template file..."
+	echo "" >> $template_file
+fi
+
 if [ ! $1 ]; then
 	ignore_path=$PWD
 elif [ ! -d $1 ]; then
