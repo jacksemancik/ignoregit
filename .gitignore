@@ -42,3 +42,8 @@ database.sqlite
 
 .react-router/
 
+# Pseudocode File
+pseudocode
+
+# Test Directory
+test
