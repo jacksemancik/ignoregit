@@ -15,6 +15,15 @@ else
 	ignore_path=$1
 fi
 
-cp ~/templates/gitignore-template ${ignore_path}/.gitignore
-
-
+if [ ! -f ${ignore_path}/.gitignore ]; then
+	cp ~/templates/gitignore-template ${ignore_path}/.gitignore
+else
+	echo "This command will overwrite the existing .gitignore file at $ignore_path, are you sure you would like to proceed?"
+	select strictreply in "Yes" "No"; do
+		relaxedreply=${strictreply:-$REPLY}
+		case $relaxedreply in
+			Yes | yes | y | Y ) cp ~/templates/gitignore-template ${ignore_path}/.gitignore; exit 0;;
+			No | no | n | N | NO ) exit 1;;
+		esac
+	done
+fi
